@@ -1,34 +1,52 @@
-public class Lab3{
+import java.util.Scanner;
+
+public class Lab3 {
     public static void main(String[] args) {
-        Rectangle r = new Rectangle(10,20);
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Before resizing:");
-        r.Demension_display();
+        System.out.println("Enter the EmployeeID:");
+        int id = sc.nextInt();
 
-        r.resizble(20,30);
+        System.out.println("Enter the Employee Name:");
+        String name = sc.next();
 
-        System.out.println("after resizing:");
-        r.Demension_display();
+        System.out.println("Enter the Salary:");
+        double salary = sc.nextDouble();
 
+        Employee e = new Employee(id, name, salary);
 
+        System.out.println("Before Salary Increment:");
+        e.display();
+
+        System.out.println("Enter the percentage of salary increment:");
+        double percentage = sc.nextDouble();
+
+        e.raiseSalary(percentage);
+
+        System.out.println("after Salary Increment:");
+        e.display();
+
+        sc.close();
     }
 }
-class Rectangle{
-    int width;
-    int hight;
 
-    Rectangle(int width,int hight){
-        this.width=width;
-        this.hight=hight;
+class Employee {
+    int id;
+    String name;
+    double salary;
+
+    Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
     }
 
-    public void resizble(int width ,int hight){
-        this.width=width;
-        this.hight=hight;
+    void raiseSalary(double percentage) {
+        salary = salary + (salary * percentage / 100);
     }
-
-    void Demension_display(){
-        System.out.println("Width :"+width);
-        System.out.println("Hight :"+hight);
+    public void display() {
+        System.out.println("EMPLOYEE Name:" + name);
+        System.out.println("Id :" + id);
+        System.out.println("Salary :" + salary);
     }
 }
